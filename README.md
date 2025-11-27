@@ -52,6 +52,42 @@ You should not edit the test files (`*.features`). Your task is to complete the 
 
 to install the dependencies, run `pnpm install` after enabling the corepack: `corepack enable`
 
+## Environment Variables
+
+The project now uses environment variables for Hedera testnet accounts. 
+
+### Setup
+
+1. **Copy the example environment file:**
+   ```bash
+   cp .env.example .env
+   ```
+
+2. **Edit `.env` file** with your testnet account details:
+   ```env
+   ACCOUNT_ID=0.0.YOUR_ACCOUNT_ID
+   ACCOUNT_PRIVATE_KEY=YOUR_PRIVATE_KEY_IN_DER_FORMAT
+   ```
+   
+   **Note:** The project uses a single account for all operations. All test scenarios will use this one account.
+
+3. **Get testnet accounts:**
+   - Visit https://portal.hedera.com
+   - Create testnet accounts
+   - Get account IDs and private keys
+   - Private keys should be in DER format (starts with `302e...`)
+
+4. **Security Note:**
+   - The `.env` file is already in `.gitignore`
+   - Never commit your `.env` file to version control
+   - The project will fall back to default testnet accounts if `.env` is not found
+
+### Account Format
+
+- **Account ID**: Format `0.0.XXXXXXX` (e.g., `0.0.7327357`)
+- **Private Key**: DER format string (e.g., `302e020100300506032b657004220420...`)
+- **Single Account**: The project uses one account (`ACCOUNT_ID` and `ACCOUNT_PRIVATE_KEY`) for all operations
+
 ## Running
 
 To run the tests you have multiple options:
